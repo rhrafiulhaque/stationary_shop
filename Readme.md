@@ -289,6 +289,7 @@ This API uses Zod for validating input data. If any validation fails, the respon
     }
   ]
 }
+```
 
 ---
 
@@ -298,7 +299,6 @@ This API uses Zod for validating input data. If any validation fails, the respon
 Email: [rh.rafiul.haque@gmail.com](mailto:rh.rafiul.haque@gmail.com)
 Website: [https://rafiul-haque.vercel.app](https://rafiul-haque.vercel.app)
 
-
-
+```
 
 ```
