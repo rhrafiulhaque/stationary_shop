@@ -263,3 +263,42 @@ To get started with this project, follow these steps:
 ```
 
 ---
+
+If the Validation Error Occured And Zod Validation is -
+
+### **Validation Errors**
+
+This API uses Zod for validating input data. If any validation fails, the response will include details about the validation issues.
+
+- **Endpoint:** **`/api/orders/revenue`**
+- **Method:** `GET`
+- **Aggregation Suggestion:**
+  - Use MongoDB aggregation pipeline to calculate the total revenue from `all orders`.
+  - Calculate the total price by multiplying the price of each product by the quantity ordered.
+- **Response:** The total revenue from all orders.
+
+```jsx
+{
+  "message": "Validation Failed",
+  "success": false,
+  "errors": [
+    {
+      "message": "Invalid format",
+      "path": ["name"],
+      "expected": "string"
+    }
+  ]
+}
+
+---
+
+## Author
+
+**Rafiul Haque**
+Email: [rh.rafiul.haque@gmail.com](mailto:rh.rafiul.haque@gmail.com)
+Website: [https://rafiul-haque.vercel.app](https://rafiul-haque.vercel.app)
+
+
+
+
+```
