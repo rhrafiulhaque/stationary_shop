@@ -31,8 +31,8 @@ To get started with this project, follow these steps:
 1. **Clone the repository**:
 
    ```bash
-   git clone <repository-url>
-   cd <project-directory>
+   git clone https://github.com/rhrafiulhaque/stationary_shop
+   cd stationary_shop
 
    ```
 
@@ -41,6 +41,7 @@ To get started with this project, follow these steps:
    npm install
    npm run dev
    ```
+   This will start the server on the specified port (default: 5000).
 
 ## API Endpoints
 
@@ -81,6 +82,181 @@ To get started with this project, follow these steps:
     "inStock": true,
     "createdAt": "2024-11-19T10:23:45.123Z",
     "updatedAt": "2024-11-19T10:23:45.123Z"
+  }
+}
+
+```
+
+---
+
+### **2. Get All Stationery Products**
+
+- **Endpoint:** **`/api/products`**
+- **Method:** `GET`
+- **Response:** A list of all products with details like name, brand, price, category, etc.
+- Query: A list of all products from the same category, you’ll take this as `/api/products?searchTerm=category` searchTerm can be `name`, `brand`, `category`
+
+```jsx
+{
+  "message": "Products retrieved successfully",
+  "status": true,
+  "data": [
+    {
+      "_id": "648a45e5f0123c45678d9012",
+      "name": "Notebook",
+      "brand": "Moleskine",
+      "price": 15,
+      "category": "Office Supplies",
+      "description": "A high-quality notebook for professionals.",
+      "quantity": 200,
+      "inStock": true,
+      "createdAt": "2024-11-19T10:23:45.123Z",
+      "updatedAt": "2024-11-19T10:23:45.123Z"
+    },
+  ]
+}
+
+```
+
+---
+
+### **3. Get a Specific Stationery Product**
+
+- **Endpoint:** **`/api/products/:productId`**
+- **Method:** `GET`
+- **Response:** The details of a specific product by ID.
+
+```jsx
+{
+  "message": "Product retrieved successfully",
+  "status": true,
+  "data": {
+    "_id": "648a45e5f0123c45678d9012",
+    "name": "Notebook",
+    "brand": "Moleskine",
+    "price": 15,
+    "category": "Office Supplies",
+    "description": "A high-quality notebook for professionals.",
+    "quantity": 200,
+    "inStock": true,
+    "createdAt": "2024-11-19T10:23:45.123Z",
+    "updatedAt": "2024-11-19T10:23:45.123Z"
+  }
+}
+
+```
+
+---
+
+### **4. Update a Stationery Product**
+
+- **Endpoint:** **`/api/products/:productId`**
+- **Method:** `PUT`
+- **Request Body:** (Product details to update)
+
+```json
+{
+  "price": 18,
+  "quantity": 180
+}
+```
+
+- **Response:** Success message and updated product details.
+
+```jsx
+{
+  "message": "Product updated successfully",
+  "status": true,
+  "data": {
+    "_id": "648a45e5f0123c45678d9012",
+    "name": "Notebook",
+    "brand": "Moleskine",
+    "price": 18,  // Price updated
+    "category": "Office Supplies",
+    "description": "A high-quality notebook for professionals.",
+    "quantity": 180,  // Quantity updated
+    "inStock": true,
+    "createdAt": "2024-11-19T10:23:45.123Z",
+    "updatedAt": "2024-11-19T11:00:00.000Z"  // Updated timestamp
+  }
+}
+
+```
+
+---
+
+### **5. Delete a Stationery Product**
+
+- **Endpoint:** **`/api/products/:productId`**
+- **Method:** `DELETE`
+- **Response:** Success message confirming the product has been deleted.
+
+```jsx
+{
+  "message": "Product deleted successfully",
+  "status": true,
+  "data": {}
+}
+
+```
+
+---
+
+### **6. Order a Stationery Product**
+
+- **Endpoint:** **`/api/orders`**
+- **Method:** `POST`
+- **Inventory Management Logic:**
+  - When an order is placed, reduce the **quantity** in the product model.
+  - If the inventory quantity goes to zero, set **inStock** to `false`.
+  - Handle **insufficient stock** cases by returning an appropriate error message.
+- **Request Body:**
+
+```json
+{
+  "email": "customer@example.com",
+  "product": "648a45e5f0123c45678d9012",
+  "quantity": 2,
+  "totalPrice": 36
+}
+```
+
+- **Response:** Success message confirming the order.
+
+```jsx
+{
+  "message": "Order created successfully",
+  "status": true,
+  "data": {
+    "_id": "648b45f5e1234b56789a6789",
+    "email": "customer@example.com",
+    "product": "648a45e5f0123c45678d9012",
+    "quantity": 2,
+    "totalPrice": 36,
+    "createdAt": "2024-11-19T12:00:00.000Z",
+    "updatedAt": "2024-11-19T12:00:00.000Z"
+  }
+}
+
+```
+
+---
+
+### **7. Calculate Revenue from Orders With Aggregation**
+
+- **Endpoint:** **`/api/orders/revenue`**
+- **Method:** `GET`
+- **Aggregation Suggestion:**
+  - Use MongoDB aggregation pipeline to calculate the total revenue from `all orders`.
+  - Calculate the total price by multiplying the price of each product by the quantity ordered.
+- **Response:** The total revenue from all orders.
+
+```jsx
+{
+  "message": "Revenue calculated successfully",
+  "status": true,
+  "data": {
+    "totalRevenue": 720  // Total revenue calculated from all orders
   }
 }
 
