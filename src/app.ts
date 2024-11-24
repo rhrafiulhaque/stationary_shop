@@ -12,4 +12,8 @@ app.use(bodyParser.json());
 app.use("/api", ProductRoutes);
 app.use("/api", OrderRoutes);
 
+app.get("/", (req, res) => {
+  res.send("Hello From the stationary Product");
+});
+
 export default app;

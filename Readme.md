@@ -52,6 +52,10 @@ To get started with this project, follow these steps:
 
    ```
 
+### **Check the API**:
+
+Once the server is running, you can access the live API and see it in action by visiting: [Stationary Backend API](https://stationary-backend-three.vercel.app/)
+
 ## API Endpoints
 
 ### Product Endpoints
