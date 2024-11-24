@@ -52,8 +52,6 @@ To get started with this project, follow these steps:
 
    ```
 
-   This will start the server on the specified port (default: 5000).
-
 ## API Endpoints
 
 ### Product Endpoints
