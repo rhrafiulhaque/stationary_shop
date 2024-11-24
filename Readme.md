@@ -37,10 +37,21 @@ To get started with this project, follow these steps:
    ```
 
 2. **Install The Dependencies**:
+
    ```bash
    npm install
    npm run dev
    ```
+
+   This will start the server on the specified port (default: 5000).
+
+3. **Set up your environment**: Create a `.env` file in the root directory for environment variables. For example, you might need to specify a MongoDB connection string:
+
+   ```bash
+   MONGO_URI="your_mongodb_connection_string"
+
+   ```
+
    This will start the server on the specified port (default: 5000).
 
 ## API Endpoints
